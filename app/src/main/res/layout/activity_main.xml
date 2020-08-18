@@ -50,18 +50,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn6"
         android:onClick="getTodoCompleted"
         android:layout_margin="10dp"
         android:text="get Todo completed"
         android:layout_below="@id/btn5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:src="@drawable/ic_edit"
-        android:layout_alignParentEnd="true"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn7"
+        android:onClick="getAllUsingLiveData"
+        android:layout_margin="10dp"
+        android:text="Get all using liveData"
+        android:backgroundTint="#8c7ae6"
+        android:layout_below="@id/btn6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.button.MaterialButton
+        android:layout_margin="10dp"
+        android:onClick="getAllUsingViewModelAndLiveData"
+        android:text="Get all using ViewModel and LiveData"
+        android:backgroundTint="#8c7ae6"
+        android:layout_below="@id/btn7"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

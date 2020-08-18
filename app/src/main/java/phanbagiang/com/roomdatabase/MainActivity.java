@@ -2,6 +2,8 @@ package phanbagiang.com.roomdatabase;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import android.app.Dialog;
 import android.os.AsyncTask;
@@ -20,21 +22,11 @@ import phanbagiang.com.roomdatabase.room.TodoRoomDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fab=findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog=new Dialog(MainActivity.this);
-                dialog.setContentView(R.layout.diag);
-                dialog.show();
-            }
-        });
     }
 
     public void insertASingleTodo(View view) {
@@ -128,6 +120,23 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "run: "+todoList.toString());
             }
         }).start();
+    }
+
+    public void getAllUsingLiveData(View view) {
+        final LiveData<List<Todo>> listLiveData=TodoRoomDatabase.getInstance(getApplicationContext())
+                .todoDao()
+                .getAllTodosLiveData();
+        listLiveData.observe(this, new Observer<List<Todo>>() {
+            @Override
+            public void onChanged(List<Todo> todos) {
+                Log.e(TAG, "onChanged: "+todos.toString() );
+                Log.e(TAG, "onChanged: "+todos.size() );
+            }
+        });
+    }
+
+    public void getAllUsingViewModelAndLiveData(View view) {
+
     }
 
     class InsertAsynTask extends AsyncTask<Todo,Void,Void>{

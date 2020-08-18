@@ -1,5 +1,6 @@
 package phanbagiang.com.roomdatabase.room;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -31,4 +32,7 @@ public interface TodoDao {
 
     @Query("SELECT * FROM todo_table WHERE todo_completed LIKE 1")
     List<Todo> getTodoComplete();
+
+    @Query("SELECT * FROM todo_table")
+    LiveData<List<Todo>> getAllTodosLiveData();
 }
